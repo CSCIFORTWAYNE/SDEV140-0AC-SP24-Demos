@@ -1,0 +1,18 @@
+{
+	"image": "mcr.microsoft.com/devcontainers/universal:2",
+	"features": {},
+	"customizations": {
+		
+		"vscode": {
+			"settings": {
+				"workbench.colorTheme": "Default Dark+" 
+			},
+			
+			"extensions": [
+				"ms-python.python",
+				"donjayamanne.python-environment-manager",
+				"ms-python.pylint"
+			]
+		}
+	}
+}
