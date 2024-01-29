@@ -1,0 +1,75 @@
+"""number converter program"""
+
+binaryNum = input("Enter a binary string: ")
+decimalNum = 0
+exponent = len(binaryNum) - 1
+for digit in binaryNum:
+    if digit == '0' or digit == '1':
+        decimalNum += int(digit) * 2 ** exponent
+        exponent -= 1
+    else:
+        print("Error: The string contains non binary digits")
+        break
+print("%0s in decimal is %0d" %(binaryNum,decimalNum))
+
+while len(binaryNum) % 4 != 0:
+    binaryNum = "0" + binaryNum
+
+for group in range(0, len(binaryNum),4):
+    something = binaryNum[group:group+4]
+    print(something)
+
+decimalNum = int(input("Enter a decimal integer: "))
+originalNum = decimalNum
+binaryNum = ""
+if decimalNum == 0:
+    binaryNum = "0"
+else:
+    while decimalNum > 0:
+        remainder = decimalNum % 2
+        decimalNum = decimalNum // 2
+        binaryNum = str(remainder) + binaryNum
+
+print("%0d in binary is %0s" %(decimalNum,binaryNum))
+
+hexNum = input("Enter a hexadecimal number: ")
+binaryNum = ""
+
+for digit in hexNum:
+    if digit == '0':
+        binaryNum += "0000"
+    elif digit == '1':
+        binaryNum += "0001"
+    elif digit == '2':
+        binaryNum += "0010"
+    elif digit == '3':
+        binaryNum += "0011"
+    elif digit == '4':
+        binaryNum += "0100"
+    elif digit == '5':
+        binaryNum += "0101"
+    elif digit == '6':
+        binaryNum += "0110"
+    elif digit == '7':
+        binaryNum += "0111"
+    elif digit == '8':
+        binaryNum += "1000"
+    elif digit == '9':
+        binaryNum += "1001"
+    elif digit in ['A','a']:
+        binaryNum += "1010"
+    elif digit in['B','b']:
+        binaryNum += "1011"
+    elif digit in ['C','c']:
+        binaryNum += "1100"
+    elif digit in ['D','d']:
+        binaryNum += "1101"
+    elif digit in ['E','e']:
+        binaryNum += "1110"
+    elif digit in ['F','f']:
+        binaryNum += "1111"
+    else:
+        print("Error: The string contains non hexadecimal digits")
+        break
+print("%0s in binary is %0s" %(hexNum,binaryNum))
+
