@@ -21,28 +21,30 @@ for group in range(0, len(binaryNum),4):
 
 decimalNum = input("Enter a decimal: ")
 originalNum = decimalNum
+
 decimalParts = decimalNum.split('.')
-decimalNum = int(decimalParts[0])
-fractionPart = float("." + decimalParts[-1]) 
-binaryNum = ""
-if decimalNum == 0:
-    binaryNum = "0"
-else:
-    while decimalNum > 0:
-        remainder = decimalNum % 2
-        decimalNum = decimalNum // 2
-        binaryNum = str(remainder) + binaryNum
-binaryNum += "."
-for digits in range(0,16):
-    x = fractionPart * 2
-    parts = str(x).split('.')
-    binaryNum += parts[0]
-    fractionPart = float("." + parts[1])
-    if fractionPart == 0:
-        break
+if decimalParts[0].isdigit() and decimalParts[-1].isdigit():
+    decimalNum = int(decimalParts[0])
+    fractionPart = float("." + decimalParts[-1])
+    binaryNum = ""
+    if decimalNum == 0:
+        binaryNum = "0"
+    else:
+        while decimalNum > 0:
+            remainder = decimalNum % 2
+            decimalNum = decimalNum // 2
+            binaryNum = str(remainder) + binaryNum
+    binaryNum += "."
+    for digits in range(0,16):
+        x = fractionPart * 2
+        parts = str(x).split('.')
+        binaryNum += parts[0]
+        fractionPart = float("." + parts[1])
+        if fractionPart == 0:
+            break
 
 
-print("%0s in binary is %0s" %(originalNum,binaryNum))
+    print("%0s in binary is %0s" %(originalNum,binaryNum))
 
 hexNum = input("Enter a hexadecimal number: ")
 binaryNum = ""
