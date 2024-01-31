@@ -10,8 +10,7 @@
 			
 			"extensions": [
 				"ms-python.python",
-				"donjayamanne.python-environment-manager",
-				"ms-python.pylint"
+				"donjayamanne.python-environment-manager"
 			]
 		}
 	}
