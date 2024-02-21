@@ -12,7 +12,7 @@ class TaxCalculator(EasyFrame):
         self.income = self.addFloatField(value = 0.0,row=0,column=1,precision=2)
         self.dependents = self.addIntegerField(value=0,row=1,column=1, width=20)
         self.computeBtn = self.addButton(text="Compute", row=2,column=1, command=self.compute)
-        
+        self.computeBtn["width"] = 17
         self.totalTax = self.addFloatField(value=0.0,precision=2,row=3, column=1,state="readonly")
     def compute(self):
         TAX_RATE = 0.20
