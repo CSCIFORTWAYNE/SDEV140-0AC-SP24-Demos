@@ -1,4 +1,9 @@
 import random
+import turtle
+# Card drawing is based on the Deck of Cards Simulator by @TokyoEdtech
+# https://github.com/wynand1004/Projects/blob/master/Cards/deck_of_cards.py
+# Combo of Turtle and tkinter based on code from
+# https://compucademy.net/python-turtle-graphics-and-tkinter-gui-programming/
 
 class Card(object):
     """A card object with a suit and rank."""
@@ -20,6 +25,41 @@ class Card(object):
     def __str__(self):
         """Returns the strign representation of a card"""
         return self.rank + Card.SUIT_SYMBOL[self.suit]
+    def render(self, x:int, y:int, pen:turtle.Turtle):
+        #draw border
+        pen.penup()
+        pen.goto(x,y)
+        pen.color("white")
+        pen.goto(x-50, y+75)
+        pen.begin_fill()
+        pen.pendown()
+        pen.goto(x+50, y+75)
+        pen.goto(x+50,y-75)
+        pen.goto(x-50,y-75)
+        pen.goto(x-50,y+75)
+        pen.end_fill()
+        pen.penup()
+
+        if self.rank != "":
+            if self.suit == "Diamonds" or self.suit == "Hearts":
+                pen.color("red")
+            else:
+                pen.color("black")
+            pen.goto(x-18,y-30)
+            pen.write(Card.SUIT_SYMBOL[self.suit],False,font=("Courier New", 48,"normal"))
+
+            #top left
+            pen.goto(x-40, y+45)
+            pen.write(self.rank, False,font=("Courier New", 18, "normal"))
+            pen.goto(x-40,y+25)
+            pen.write(Card.SUIT_SYMBOL[self.suit],False,font=("Courier New",18, "normal"))
+            
+            #bottom right
+            pen.goto(x+40,y-60)
+            
+            pen.write(self.rank, False,align="right",font=("Courier New", 18, "normal"))
+            pen.goto(x+40, y-80)
+            pen.write(Card.SUIT_SYMBOL[self.suit], False,align="right",font=("Courier New", 18, "normal"))
 
 class Deck(object):
     """A deck containing 52 cards."""
@@ -43,5 +83,25 @@ class Deck(object):
         for c in self.cards:
             result = result + str(c) + "\n"
         return result
+    
+class Pile():
+    def __init__(self,num=0):
+        self.num = num
+        self.sequence = []
+        self.cards = []
+        self.topCard = -1
+        if num != 0:
+            for i in range(13):
+                self.sequence.append(Card.RANKS[((i+1)*num - 1) % 13])
+        def playCard(self, card:Card):
+            if self.num == 0 or card.rank == self.sequence[self.topCard + 1]:
+                self.cards.append(card)
+                self.topCard += 1
+                return True
+            else:
+                return False
+    def getTopCard(self):
+        self.topCard -=1
+        return self.cards.pop()
         
         
