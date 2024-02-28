@@ -8,8 +8,8 @@ import turtle
 class Card(object):
     """A card object with a suit and rank."""
 
-    RANKS = ("A","2","3","4","5","6","7","8","9","10","J","Q","K")
-    SUITS = ("Spades", "Diamonds", "Hearts", "Clubs")
+    RANKS = ("A","2","3","4","5","6","7","8","9","10","J","Q","K","")
+    SUITS = ("Spades", "Diamonds", "Hearts", "Clubs","")
     SUIT_SYMBOL = {"Diamonds":"♦", "Clubs":"♣", "Hearts":"♥", "Spades":"♠"}
 
     def __init__(self,rank:str,suit:str):
@@ -65,9 +65,9 @@ class Deck(object):
     """A deck containing 52 cards."""
     def __init__(self):
         self.cards = []
-        for suit in Card.SUITS:
-            for rank in Card.RANKS:
-                c = Card(rank, suit)
+        for i in range(4):
+            for j in range(13):
+                c = Card(Card.RANKS[j], Card.SUITS[i])
                 self.cards.append(c)
     def shuffle(self):
         random.shuffle(self.cards)
@@ -93,15 +93,17 @@ class Pile():
         if num != 0:
             for i in range(13):
                 self.sequence.append(Card.RANKS[((i+1)*num - 1) % 13])
-        def playCard(self, card:Card):
-            if self.num == 0 or card.rank == self.sequence[self.topCard + 1]:
-                self.cards.append(card)
-                self.topCard += 1
-                return True
-            else:
-                return False
+    def playCard(self, card:Card):
+        if self.num == 0 or card.rank == self.sequence[self.topCard + 1]:
+            self.cards.append(card)
+            self.topCard += 1
+            return True
+        else:
+            return False
     def getTopCard(self):
         self.topCard -=1
         return self.cards.pop()
+    def __len__(self):
+        return len(self.cards)
         
         
