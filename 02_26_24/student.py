@@ -24,3 +24,17 @@ class Student(object):
         """Returns the highest score."""
         return max(self.scores)
     
+
+def main():
+    name = input("What is the student name? ")
+    scores = int(input("How many scores do they have? "))
+    s = Student(name, scores)
+    for i in range(1,scores + 1):
+        score = int(input("What is score #" + str(i) +"? "))
+        s.setScore(i,score)
+    print(s.getAverageScore())
+    print(s.getHighScore())
+    print(s)
+if __name__ == "__main__":
+    main()
+    
