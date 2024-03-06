@@ -11,7 +11,7 @@ class ImageDemo(EasyFrame):
         imageLabel = self.addLabel(text = "", row = 0, column= 0, sticky="NSEW")
         textLabel = self.addLabel(text="Hello IT, Have you tried turning it off and on again?", row= 1, column=0, sticky="NSEW")
         
-        self.image = PhotoImage(file = "it.gif")
+        self.image = PhotoImage(file = "02_19_24/images/it.gif")
         imageLabel["image"] = self.image
         myfont = Font(family = "Veranda", size = 20, slant = "italic")
         textLabel["font"] = myfont
